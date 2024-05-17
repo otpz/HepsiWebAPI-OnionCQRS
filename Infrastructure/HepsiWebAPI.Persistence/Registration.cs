@@ -1,9 +1,12 @@
 ﻿using HepsiWebAPI.Application.Interfaces.Repositories;
+using HepsiWebAPI.Application.Interfaces.UnitOfWorks;
 using HepsiWebAPI.Persistence.Context;
 using HepsiWebAPI.Persistence.Repositories;
+using HepsiWebAPI.Persistence.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
 
 namespace HepsiWebAPI.Persistence
 {
@@ -15,6 +18,8 @@ namespace HepsiWebAPI.Persistence
 
             services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
             services.AddScoped(typeof(IWriteRepository<>), typeof(WriteRepository<>));
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
     }
 }

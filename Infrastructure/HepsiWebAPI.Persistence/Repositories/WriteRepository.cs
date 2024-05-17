@@ -12,7 +12,6 @@ namespace HepsiWebAPI.Persistence.Repositories
         {
             this.dbContext = dbContext;
         }
-
         private DbSet<T> Table { get => dbContext.Set<T>(); }
 
         public async Task AddAsync(T entity)
