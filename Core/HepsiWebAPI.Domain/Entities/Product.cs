@@ -21,7 +21,7 @@ namespace HepsiWebAPI.Domain.Entities
         public Brand Brand { get; set; }
         public required decimal Price { get; set; }
         public required decimal Discount { get; set; }
-        public ICollection<Category> Categories { get; set; }
+        public ICollection<Category> ProductCategories { get; set; }
 
     }
 }
