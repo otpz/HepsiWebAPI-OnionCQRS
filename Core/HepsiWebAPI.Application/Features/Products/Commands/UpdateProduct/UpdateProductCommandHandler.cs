@@ -5,7 +5,7 @@ using MediatR;
 
 namespace HepsiWebAPI.Application.Features.Products.Commands.UpdateProduct
 {
-    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommandRequest>
+    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommandRequest, Unit>
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
@@ -16,7 +16,7 @@ namespace HepsiWebAPI.Application.Features.Products.Commands.UpdateProduct
             this.mapper = mapper;
         }
 
-        public async Task Handle(UpdateProductCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(UpdateProductCommandRequest request, CancellationToken cancellationToken)
         {
             var product = await unitOfWork.GetReadRepository<Product>().GetAsync(x => x.Id == request.Id && !x.IsDeleted);
 
@@ -34,6 +34,8 @@ namespace HepsiWebAPI.Application.Features.Products.Commands.UpdateProduct
 
             await unitOfWork.GetWriteRepository<Product>().UpdateAsync(map);
             await unitOfWork.SaveAsync();
+
+            return Unit.Value;
 
         }
     }

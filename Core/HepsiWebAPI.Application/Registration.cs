@@ -1,6 +1,10 @@
-﻿using HepsiWebAPI.Application.Exceptions;
+﻿using FluentValidation;
+using HepsiWebAPI.Application.Exceptions;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using System.Globalization;
+using MediatR;
+using HepsiWebAPI.Application.Behaviour;
 
 namespace HepsiWebAPI.Application
 {
@@ -13,6 +17,13 @@ namespace HepsiWebAPI.Application
             services.AddTransient<ExceptionMiddleware>();
 
             services.AddMediatR(config => config.RegisterServicesFromAssembly(assembly));
+
+            services.AddValidatorsFromAssembly(assembly);
+            ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("tr");
+
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehaviour<,>));
+
         }
+
     }
 }
