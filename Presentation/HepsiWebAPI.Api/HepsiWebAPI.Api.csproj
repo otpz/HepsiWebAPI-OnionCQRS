@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\HepsiWebAPI.Mapper\HepsiWebAPI.Mapper.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\HepsiWebAPI.Infrastructure\HepsiWebAPI.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Infrastructure\HepsiWebAPI.Persistence\HepsiWebAPI.Persistence.csproj" />
   </ItemGroup>
 
